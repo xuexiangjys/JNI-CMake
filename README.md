@@ -33,3 +33,61 @@ Android使用CMake进行JNI开发演示
 * Runtime Type Information Support：如果希望支持 RTTI，请选中此复选框。如果启用此复选框，Android Studio 会将 -frtti 标志添加到模块级 build.gradle文件的 cppFlags中，Gradle 会将其传递到 CMake。
 
 ![](https://github.com/xuexiangjys/JNI-CMake/blob/master/img/3.png)
+
+### 支持C++的项目目录
+
+![](https://github.com/xuexiangjys/JNI-CMake/blob/master/img/4.png)
+
+* `src/main/cpp`下存放的我们编写供JNI调用的C++源码。
+
+* `CMakeLists.txt`文件是CMake的配置文件,通常他包含的内容如下：
+
+```
+# TODO 设置构建本机库文件所需的 CMake的最小版本
+cmake_minimum_required(VERSION 3.4.1)
+
+# TODO 添加自己写的 C/C++源文件
+add_library( native-lib
+             SHARED
+             src/main/cpp/native-lib.cpp )
+
+# TODO 依赖 NDK中的库
+find_library( log-lib
+              log )
+
+# TODO 将目标库与 NDK中的库进行连接
+target_link_libraries( native-lib
+                       ${log-lib} )
+```
+
+### build.gradle的配置
+
+```
+android {
+    ...
+    defaultConfig {
+        ...
+        externalNativeBuild {
+            cmake {
+                // 默认是 “ cppFlags "" ”
+                // 如果要修改 Customize C++ Support 部分，可在这里加入
+                cppFlags "-frtti -fexceptions"
+            }
+        }
+        
+        ndk {
+            // abiFiliter： ABI 过滤器（application binary interface，应用二进制接口）
+            // Android 支持的 CPU 架构
+            abiFilters 'armeabi-v7a','arm64-v8a','x86','x86_64'//, 'armeabi' 不支持了
+        }
+    }
+    buildTypes {
+        ...
+    }
+    externalNativeBuild {
+        cmake {
+            path "CMakeLists.txt"
+        }
+    }
+}
+```

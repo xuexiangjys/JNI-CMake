@@ -313,8 +313,10 @@ Java_com_xuexiang_jnidemo_JNIApi_getJNIReference(JNIEnv *env, jobject instance) 
 extern "C"
 JNIEXPORT void JNICALL
 Java_com_xuexiang_jnidemo_JNIApi_releaseJNIReference(JNIEnv *env, jobject instance) {
-    env->DeleteGlobalRef(global_jstring);
-    isRelease = static_cast<jboolean>(true);
+    if (!isRelease) {
+        env->DeleteGlobalRef(global_jstring);
+        isRelease = static_cast<jboolean>(true);
+    }
 }
 
 
