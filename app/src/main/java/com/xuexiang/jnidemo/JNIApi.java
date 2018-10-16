@@ -121,4 +121,5 @@ public class JNIApi {
      * jni层进行异常捕获
      */
     public native void jniTryCatchException() throws Exception;
+
 }
