@@ -44,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements OnClickListener {
         switch(view.getId()) {
             case R.id.btn_call_no_static_field:
                 mJNIApi.testCallNoStaticField();
-                showLog("noStaticField修改前=0\n修改后=" + mJNIApi.noStaticField);
+                showLog("noStaticField修改前=0\n修改后=" + mJNIApi.getNoStaticField());
                 break;
             case R.id.btn_call_static_field:
                 mJNIApi.testCallStaticField();

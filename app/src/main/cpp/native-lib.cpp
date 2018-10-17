@@ -141,6 +141,7 @@ Java_com_xuexiang_jnidemo_JNIApi_testCallParamMethod(JNIEnv *env, jobject instan
     jmethodID id = env->GetMethodID(clazz, "paramMethod", "(I)V");
     if (id == NULL) {
         printf("find method Error");
+        return;
     }
     env->CallVoidMethod(instance, id, ++number);
 }
@@ -178,6 +179,7 @@ Java_com_xuexiang_jnidemo_JNIApi_testCallStaticMethod(JNIEnv *env, jobject insta
     jmethodID id = env->GetStaticMethodID(clazz, "staticMethod", "()V");
     if (id == NULL) {
         printf("find method Error");
+        return;
     }
 
     env->CallStaticVoidMethod(clazz, id);

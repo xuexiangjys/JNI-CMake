@@ -150,7 +150,7 @@ set_target_properties(avcodec-57
                       ${CMAKE_SOURCE_DIR}/src/main/jniLibs/${ANDROID_ABI}/libavcodec-57.so)
 ```
 
-* 引入第三方 .h 文件夹，也要添加到 CMakeLists.txt 文件中
+* 7.引入第三方 .h 文件夹，也要添加到 CMakeLists.txt 文件中
 
 ```
 # TODO include_directories( src/main/jniLibs/${ANDROID_ABI}/include )
@@ -158,6 +158,6 @@ set_target_properties(avcodec-57
 include_directories( src/main/cpp/ffmpeg/include )
 ```
 
-* C++library编译生成的so文件，在 `build/intermediates/cmake` 下
+* 8.C++ library编译生成的so文件，在 `build/intermediates/cmake` 下
 
 ![](https://github.com/xuexiangjys/JNI-CMake/blob/master/img/6.png)

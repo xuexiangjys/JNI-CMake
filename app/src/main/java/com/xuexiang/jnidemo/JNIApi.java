@@ -10,7 +10,7 @@ public class JNIApi {
     /**
      * 非静态成员变量
      */
-    public int noStaticField = 0;
+    private int noStaticField = 0;
     /**
      * 静态成员变量
      */
@@ -27,6 +27,10 @@ public class JNIApi {
 
     public JNIApi(MainActivity.OnShowLogListener logListener) {
         mOnShowLogListener = logListener;
+    }
+
+    public int getNoStaticField() {
+        return noStaticField;
     }
 
     public void noParamMethod() {
