@@ -248,3 +248,23 @@ Java_com_xuexiang_jnidemo_JNIApi_jniTryCatchException(JNIEnv *env, jobject insta
     }
 }
 ```
+
+### 8、日志打印
+
+```
+#include <android/log.h> //引用android log
+
+//定义日志打印的方法
+#define TAG "CMake-JNI" // 这个是自定义的LOG的标识
+#define LOGD(...) __android_log_print(ANDROID_LOG_DEBUG,TAG ,__VA_ARGS__) // 定义LOGD类型
+#define LOGI(...) __android_log_print(ANDROID_LOG_INFO,TAG ,__VA_ARGS__) // 定义LOGI类型
+#define LOGW(...) __android_log_print(ANDROID_LOG_WARN,TAG ,__VA_ARGS__) // 定义LOGW类型
+#define LOGE(...) __android_log_print(ANDROID_LOG_ERROR,TAG ,__VA_ARGS__) // 定义LOGE类型
+#define LOGF(...) __android_log_print(ANDROID_LOG_FATAL,TAG ,__VA_ARGS__) // 定义LOGF类型
+
+LOGE("jni发生异常"); //日志打印
+```
+
+### 相关连接
+
+* [Android JNI基础篇](https://blog.csdn.net/kgdwbb/article/details/72810251)
